@@ -18,6 +18,6 @@ async def create_summary(payload: SummaryPayloadSchema) -> SummaryResponseSchema
 
 
 @router.get('/{id}/', response_model=SummarySchema)
-async def read_summary(id: int) -> SummarySchema:
-    summary = crud.get(id)
+async def read_summary(summary_id: int) -> SummarySchema:
+    summary = crud.get(summary_id=summary_id)
     return summary

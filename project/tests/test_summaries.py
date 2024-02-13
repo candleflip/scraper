@@ -45,10 +45,10 @@ def test_read_summary_incorrect_id(test_app_with_db):
 def test_read_all_summaries(test_app_with_db):
     added_summaries = []
     response = test_app_with_db.post('/summaries/', data=json.dumps({'url': 'https://foo1.bar'}))
-    assert response.status_code == 200
+    assert response.status_code == 201
     added_summaries.append(response.json()['id'])
     response = test_app_with_db.post('/summaries/', data=json.dumps({'url': 'https://foo2.bar'}))
-    assert response.status_code == 200
+    assert response.status_code == 201
     added_summaries.append(response.json()['id'])
 
     response = test_app_with_db.get('/summaries/')

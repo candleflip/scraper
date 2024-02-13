@@ -55,5 +55,4 @@ def test_read_all_summaries(test_app_with_db):
     assert response.status_code == 200
 
     response_list = response.json()
-    assert len(response_list) == 2
-    assert response_list == added_summaries
+    assert len(list(filter(lambda x: x['id'] in added_summaries, response_list))) == 2

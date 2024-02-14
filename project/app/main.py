@@ -24,6 +24,7 @@ async def startup_event():
     log.info('Starting up...')
     initialize_database(app=app)
 
+
 @app.on_event('shutdown')
 async def shutdown_event():
     log.info('Shutting down...')

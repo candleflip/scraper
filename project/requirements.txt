@@ -4,7 +4,6 @@ black==24.2.0
 fastapi==0.70.1
 flake8==4.0.1
 gunicorn==20.1.0
-isort==5.10.1
 pytest==6.2.5
 pytest-cov==3.0.0
 requests==2.26.0

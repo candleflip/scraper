@@ -1,3 +1,5 @@
 __pycache__
 .venv
 .idea
+project/.coverage
+project/htmlcov/

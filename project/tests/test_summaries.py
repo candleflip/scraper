@@ -45,7 +45,7 @@ def test_read_summary_incorrect_id(test_app_with_db):
     assert response.status_code == 404
     assert response.json()['detail'] == 'Summary not found'
 
-    response = test_app_with_db.get('/summaries/0')
+    response = test_app_with_db.get('/summaries/0/')
     assert response.status_code == 422
     assert response.json() == {
         'detail': [
@@ -117,6 +117,21 @@ def test_update_summary_incorrect_id(test_app_with_db):
     assert response.status_code == 404
     assert response.json()['detail'] == 'Summary not found'
 
+    response = test_app_with_db.put('/summaries/0/')
+    assert response.status_code == 422
+
+    assert response.json() == {
+        'detail': [
+            {
+                'ctx': {'limit_value': 0},
+                'loc': ['path', 'summary_id'],
+                'msg': 'ensure this value is greater than 0',
+                'type': 'value_error.number.not_gt',
+            },
+            {'loc': ['body'], 'msg': 'field required', 'type': 'value_error.missing'},
+        ]
+    }
+
 
 def test_update_summary_invalid_json(test_app_with_db):
     response = test_app_with_db.post('/summaries/', data=json.dumps({'url': 'https://foo.bar'}))
@@ -140,4 +155,17 @@ def test_update_summary_invalid_keys(test_app_with_db):
     assert response.status_code == 422
     assert response.json()['detail'] == [
         {'loc': ['body', 'summary'], 'msg': 'field required', 'type': 'value_error.missing'}
+    ]
+
+    response = test_app_with_db.put(
+        f'/summaries/{summary_id}/', data=json.dumps({'url': 'invalid://url', 'summary': 'Updated summary'})
+    )
+    assert response.status_code == 422
+    assert response.json()['detail'] == [
+        {
+            'loc': ['body', 'url'],
+            'msg': 'URL scheme not permitted',
+            'type': 'value_error.url.scheme',
+            'ctx': {'allowed_schemes': ['http', 'https']},
+        }
     ]

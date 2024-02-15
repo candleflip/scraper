@@ -26,7 +26,7 @@ def test_read_summary(test_app_with_db):
     assert response.status_code == 201
     summary_id = response.json()['id']
 
-    response = test_app_with_db.get(f'/summaries/{summary_id}')
+    response = test_app_with_db.get(f'/summaries/{summary_id}/')
     assert response.status_code == 200
 
     response_dict = response.json()
@@ -63,11 +63,11 @@ def test_remove_summary(test_app_with_db):
     assert response.status_code == 201
     summary_id = response.json()['id']
 
-    response = test_app_with_db.delete(f'/summaries/{summary_id}')
+    response = test_app_with_db.delete(f'/summaries/{summary_id}/')
     assert response.status_code == 200
     assert response.json() == {'id': summary_id, 'url': 'https://foo.bar'}
 
 def test_remove_summary_incorrect_id(test_app_with_db):
-    response = test_app_with_db.delete('/summaries/999')
+    response = test_app_with_db.delete('/summaries/999/')
     assert response.status_code == 404
     assert response.json()['detail'] == 'Summary not found'

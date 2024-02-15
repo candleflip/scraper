@@ -67,7 +67,27 @@ def test_remove_summary(test_app_with_db):
     assert response.status_code == 200
     assert response.json() == {'id': summary_id, 'url': 'https://foo.bar'}
 
+
 def test_remove_summary_incorrect_id(test_app_with_db):
     response = test_app_with_db.delete('/summaries/999/')
     assert response.status_code == 404
     assert response.json()['detail'] == 'Summary not found'
+
+
+def test_update_summary(test_app_with_db):
+    response = test_app_with_db.post('/summaries/', data=json.dumps({'url': 'https://foo.bar'}))
+    assert response.status_code == 201
+    summary_id = response.json()['id']
+
+    response = test_app_with_db.put(
+        f'/summaries/{summary_id}/', data=json.dumps({'url': 'https://foo.bar', 'summary': 'Updated summary'})
+    )
+    assert response.status_code == 200
+
+    response = test_app_with_db.get(f'/summaries/{summary_id}/')
+    assert response.status_code == 200
+    summary_info = response.json()
+    assert summary_info['id'] == summary_id
+    assert summary_info['url'] == 'https://foo.bar'
+    assert summary_info['summary'] == 'Updated summary'
+    assert summary_info['created_at']

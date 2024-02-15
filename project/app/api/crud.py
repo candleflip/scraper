@@ -2,10 +2,12 @@ from typing import List, Optional, Dict
 
 from app.models.pydantic import SummaryPayloadSchema, SummaryUpdatePayloadSchema
 from app.models.tortoise import TextSummary
+from app.summarizer import generate_summary
 
 
 async def post(payload: SummaryPayloadSchema) -> int:
-    summary = TextSummary(url=payload.url, summary='dummy summary')
+    article_summary = generate_summary(url=payload.url)
+    summary = TextSummary(url=payload.url, summary=article_summary)
     await summary.save()
     return summary.id
 

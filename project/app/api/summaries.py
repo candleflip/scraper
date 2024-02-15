@@ -39,3 +39,13 @@ async def delete_summary(summary_id: int) -> SummaryResponseSchema:
 
     await crud.delete(summary_id=summary_id)
     return summary
+
+
+@router.put('/{summary_id}/', response_model=SummarySchema)
+async def update_summary(summary_id: int, payload: SummaryUpdatePayloadSchema) -> SummarySchema:
+    summary = await crud.get(summary_id=summary_id)
+    if summary is None:
+        raise HTTPException(status_code=404, detail='Summary not found')
+
+    summary = await crud.put(summary_id=summary_id, payload=payload)
+    return summary

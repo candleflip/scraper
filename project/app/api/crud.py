@@ -1,6 +1,6 @@
-from typing import List, Optional
+from typing import List, Optional, Dict
 
-from app.models.pydantic import SummaryPayloadSchema
+from app.models.pydantic import SummaryPayloadSchema, SummaryUpdatePayloadSchema
 from app.models.tortoise import TextSummary
 
 
@@ -10,11 +10,11 @@ async def post(payload: SummaryPayloadSchema) -> int:
     return summary.id
 
 
-async def get(summary_id: int) -> Optional[dict]:
+async def get(summary_id: int) -> Optional[Dict]:
     summary = await TextSummary.filter(id=summary_id).first().values()
-    if summary:
-        return summary
-    return None
+    if not summary:
+        return None
+    return summary
 
 
 async def get_all() -> List:
@@ -25,3 +25,12 @@ async def get_all() -> List:
 async def delete(summary_id: int) -> int:
     summary = await TextSummary.filter(id=summary_id).delete()
     return summary
+
+
+async def put(summary_id: int, payload: SummaryUpdatePayloadSchema) -> Optional[Dict]:
+    summary = await TextSummary.filter(id=summary_id).update(url=payload.url, summary=payload.summary)
+    if not summary:
+        return None
+
+    updated_summary = await TextSummary.filter(id=summary_id).first().values()
+    return updated_summary

@@ -9,12 +9,7 @@ log = logging.getLogger('uvicorn')
 
 TORTOISE_ORM = {
     'connections': {'default': os.environ.get('DATABASE_URL')},
-    'apps': {
-        'models': {
-            'models': ['app.models.tortoise', 'aerich.models'],
-            'default_connection': 'default',
-        },
-    },
+    'apps': {'models': {'models': ['app.models.tortoise', 'aerich.models'], 'default_connection': 'default'}},
 }
 
 
@@ -31,11 +26,8 @@ def initialize_database(app: FastAPI) -> None:
 async def generate_schema() -> None:
     log.info('Tortoise initialization...')
 
-    await Tortoise.init(
-        db_url=os.environ.get('DATABASE_URL'),
-        modules={'models': ['models.tortoise']},
-    )
-    log.info('Generating database schema via Tortiose...')
+    await Tortoise.init(db_url=os.environ.get('DATABASE_URL'), modules={'models': ['models.tortoise']})
+    log.info('Generating database schema via Tortoise...')
     await Tortoise.generate_schemas()
     await Tortoise.close_connections()
 

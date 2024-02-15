@@ -138,7 +138,7 @@ def test_update_summary_invalid_url(test_app_with_db):
 
 
 @pytest.mark.parametrize(
-    'summary_id, payload, status_code, detail',
+    'id_, payload, status_code, detail',
     [
         [999, {'url': 'https://foo.bar', 'summary': 'Updated summary'}, 404, 'Summary not found'],
         [
@@ -173,7 +173,11 @@ def test_update_summary_invalid_url(test_app_with_db):
         ]
     ],
 )
-def test_update_summary_invalid(test_app_with_db, summary_id, payload, status_code, detail):
-    response = test_app_with_db.put(f'/summaries/{summary_id}/', data=json.dumps(payload))
+def test_update_summary_invalid(test_app_with_db, id_, payload, status_code, detail):
+    response = test_app_with_db.post('/summaries/', data=json.dumps({'url': 'https://foo.bar'}))
+    assert response.status_code == 201
+    summary_id = response.json()['id']
+
+    response = test_app_with_db.put(f'/summaries/{id_ if id_ in (0, 999) else summary_id}/', data=json.dumps(payload))
     assert response.status_code == status_code
     assert response.json()['detail'] == detail

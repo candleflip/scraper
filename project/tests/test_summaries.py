@@ -161,16 +161,14 @@ def test_update_summary_invalid_url(test_app_with_db):
             [
                 {'loc': ['body', 'url'], 'msg': 'field required', 'type': 'value_error.missing'},
                 {'loc': ['body', 'summary'], 'msg': 'field required', 'type': 'value_error.missing'},
-            ]
+            ],
         ],
         [
             1,
             {'url': 'https://foo.bar'},
             422,
-            [
-                {'loc': ['body', 'summary'], 'msg': 'field required', 'type': 'value_error.missing'}
-            ]
-        ]
+            [{'loc': ['body', 'summary'], 'msg': 'field required', 'type': 'value_error.missing'}],
+        ],
     ],
 )
 def test_update_summary_invalid(test_app_with_db, id_, payload, status_code, detail):

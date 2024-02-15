@@ -98,7 +98,7 @@ def test_update_summary_incorrect_id(test_app_with_db):
         '/summaries/999/', data=json.dumps({'url': 'https://foo.bar', 'summary': 'Updated summary'})
     )
     assert response.status_code == 404
-    assert response.json()['details'] == 'Summary not found'
+    assert response.json()['detail'] == 'Summary not found'
 
 
 def test_update_summary_invalid_json(test_app_with_db):
@@ -108,7 +108,10 @@ def test_update_summary_invalid_json(test_app_with_db):
 
     response = test_app_with_db.put(f'/summaries/{summary_id}/', data=json.dumps({}))
     assert response.status_code == 422
-    assert response.json()['details'] == '???'
+    assert response.json()['detail'] == [
+        {'loc': ['body', 'url'], 'msg': 'field required', 'type': 'value_error.missing'},
+        {'loc': ['body', 'summary'], 'msg': 'field required', 'type': 'value_error.missing'},
+    ]
 
 
 def test_update_summary_invalid_keys(test_app_with_db):
@@ -118,4 +121,6 @@ def test_update_summary_invalid_keys(test_app_with_db):
 
     response = test_app_with_db.put(f'/summaries/{summary_id}/', data=json.dumps({'url': 'https://foo.bar'}))
     assert response.status_code == 422
-    assert response.json()['details'] == '???'
+    assert response.json()['detail'] == [
+        {'loc': ['body', 'summary'], 'msg': 'field required', 'type': 'value_error.missing'}
+    ]

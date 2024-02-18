@@ -1,6 +1,13 @@
-.venv
+**/.venv
+**/.aws
+**/.ssh
 .dockerignore
 Dockerfile
 Dockerfile.prod
-.coverage
 htmlcov/
+**/.git
+**/.gitignore
+**/coverage
+README.md
+docker-compose.yml
+**/.DS_Store

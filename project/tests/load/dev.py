@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from locust import HttpUser, between, task, events
+from locust import HttpUser, between, events, task
 
 
 class WebUser(HttpUser):

@@ -10,6 +10,9 @@
 - Линтер/форматер: [ruff](https://docs.astral.sh/ruff/)
 - Нагрузочное тестирование: [Locust](https://locust.io/)
 
+
+### Структура
+
 ```
 ├── Dockerfile
 ├── Dockerfile.prod

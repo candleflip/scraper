@@ -4,10 +4,11 @@
 
 - Версия языка: [Python3.10.1](https://www.python.org/downloads/release/python-3100/)
 - Web-фреймворк: [FastAPI](https://fastapi.tiangolo.com/ru/)
+- База Данных: [Postgres14](https://www.postgresql.org/docs/14/index.html)
 - ORM: [TortoiseORM](https://tortoise.github.io/)
 - Миграции: [Aerich](https://github.com/tortoise/aerich/blob/dev/README_RU.md)
-- Unit-тестирование: [Pytest](https://docs.pytest.org/en/8.0.x/index.html)
 - Линтер/форматер: [ruff](https://docs.astral.sh/ruff/)
+- Unit-тестирование: [Pytest](https://docs.pytest.org/en/8.0.x/index.html)
 - Нагрузочное тестирование: [Locust](https://locust.io/)
 
 

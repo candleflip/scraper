@@ -11,7 +11,7 @@
 - Нагрузочное тестирование: [Locust](https://locust.io/)
 
 
-### Структура
+### :bookmark_tabs: Структура
 
 ```
 ├── Dockerfile

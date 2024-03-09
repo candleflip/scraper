@@ -2,7 +2,7 @@
 
 ### :pill: Стек
 
-- Версия языка: [Python3.10](https://www.python.org/downloads/release/python-3100/)
+- Версия языка: [Python3.10.1](https://www.python.org/downloads/release/python-3100/)
 - Web-фреймворк: [FastAPI](https://fastapi.tiangolo.com/ru/)
 - ORM: [TortoiseORM](https://tortoise.github.io/)
 - Миграции: [Aerich](https://github.com/tortoise/aerich/blob/dev/README_RU.md)
@@ -81,4 +81,12 @@ docker-compose up --detach --build
 
 ```shell
 docker-compose exec web aerich upgrade 
+```
+
+### Нагрузочное тестирование
+
+Можно провести локально, выполнив команду:
+
+```shell
+locust -f project/tests/load/dev.py
 ```

@@ -6,7 +6,7 @@ from locust import HttpUser, between, task, events
 class WebUser(HttpUser):
     wait_time = between(1, 5)
     weight = 3
-    host = 'http://0.0.0.0:8004'
+    host = 'http://0.0.0.0:8005'
 
     @task
     def health_check(self):

@@ -1,8 +1,8 @@
 # Web scraper by URL
 
 ### :dart: TODO
-- [ ] Добавить `Makefile`
-- [ ] Проверить запуск с нуля
+- [x] Добавить `Makefile`
+- [x] Проверить запуск с нуля
 - [ ] Добавить описание проекта в `README.md`
 - [ ] Добавить описание модулей проекта в структуру в `README.md`
 - [ ] Дописать тесты в `test_summaries_unit.py` 
@@ -78,7 +78,6 @@ make up
  ⠿ Network scraper_default  Created                                        0.1s
  ⠿ Container web-db         Started                                        0.3s
  ⠿ Container web            Started                                        0.5s
-
 ```
 
 Документация OpenAPI доступна по пути [localhost:8005/docs](http://localhost:8005/docs).
@@ -90,8 +89,6 @@ make up
 ```shell
 make db-init 
 ```
-
----
 
 ---
 

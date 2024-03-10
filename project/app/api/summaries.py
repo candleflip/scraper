@@ -1,3 +1,6 @@
+"""
+Модуль с ручками на /summaries
+"""
 from typing import List
 
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Path

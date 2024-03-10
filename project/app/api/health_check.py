@@ -1,3 +1,6 @@
+"""
+Модуль с ручкой на /health_check
+"""
 from fastapi import APIRouter, Depends
 
 from app.settings import Settings, get_settings

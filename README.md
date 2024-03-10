@@ -74,10 +74,11 @@ docker-compose up --detach --build
 Поднимется 2 контейнера и 1 сетевой объект:
 
 ```
-[+] Running 3/3
- ⠿ Network fastapi-tdd-docker_default     Created                                0.0s
- ⠿ Container fastapi-tdd-docker-web-db-1  Started                                0.3s
- ⠿ Container fastapi-tdd-docker-web-1     Started                                0.2s
+ [+] Running 3/3
+ ⠿ Network scraper_default  Created                                        0.1s
+ ⠿ Container web-db         Started                                        0.3s
+ ⠿ Container web            Started                                        0.5s
+
 ```
 
 Документация OpenAPI доступна по пути [localhost:8005/docs](http://localhost:8005/docs).

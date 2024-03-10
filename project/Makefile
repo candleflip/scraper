@@ -1,6 +1,9 @@
 up:
 	docker-compose up --detach --build
 
+init:
+	docker-compose exec web aerich init-db
+
 migrate:
 	docker-compose exec web aerich upgrade
 

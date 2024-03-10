@@ -76,9 +76,9 @@ docker-compose up --detach --build
 
 ```
 [+] Running 3/3
- ⠿ Network fastapi-tdd-docker_default     Created                                                                                                                    0.0s
- ⠿ Container fastapi-tdd-docker-web-db-1  Started                                                                                                                    0.3s
- ⠿ Container fastapi-tdd-docker-web-1     Started
+ ⠿ Network fastapi-tdd-docker_default     Created                                0.0s
+ ⠿ Container fastapi-tdd-docker-web-db-1  Started                                0.3s
+ ⠿ Container fastapi-tdd-docker-web-1     Started                                0.2s
 ```
 
 Документация OpenAPI доступна по пути [localhost:8005/docs](http://localhost:8005/docs).

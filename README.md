@@ -1,4 +1,4 @@
-# Web scraper by URL
+# Пример проекта на FastAPI
 
 ### :mag: Описание
 

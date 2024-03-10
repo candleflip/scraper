@@ -3,6 +3,7 @@
 ### :dart: TODO
 - [ ] Дописать тесты в `test_summaries_unit.py` 
 
+---
 
 ### :pill: Стек
 
@@ -15,6 +16,7 @@
 - Unit-тестирование: [Pytest](https://docs.pytest.org/en/8.0.x/index.html)
 - Нагрузочное тестирование: [Locust](https://locust.io/)
 
+---
 
 ### :file_folder: Структура
 
@@ -58,6 +60,7 @@
         └── test_summaries_unit.py
 ```
 
+---
 
 ### :gear: Запуск
 
@@ -88,6 +91,8 @@ docker-compose up --detach --build
 docker-compose exec web aerich upgrade 
 ```
 
+---
+
 ### :chart_with_upwards_trend: Нагрузочное тестирование
 
 Можно провести локально, выполнив команду:
@@ -95,6 +100,8 @@ docker-compose exec web aerich upgrade
 ```shell
 locust -f project/tests/load/dev.py
 ```
+
+---
 
 ### :wrench: Unit-тестирование
 

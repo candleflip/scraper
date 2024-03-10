@@ -1,3 +1,8 @@
+"""
+Точка входа в приложение.
+
+Создает приложение, принимает роутеры из модулей ручек.
+"""
 import logging
 
 from fastapi import FastAPI
@@ -9,6 +14,15 @@ log = logging.getLogger('uvicorn')
 
 
 def create_application() -> FastAPI:
+    """
+    Подготавливает приложение
+
+    Создает экземпляр приложения, добавляет в него ручки.
+
+    Returns:
+        Сконфигурированное приложение.
+
+    """
     application = FastAPI()
     application.include_router(health_check.router)
     application.include_router(summaries.router, prefix='/summaries', tags=['summaries'])
@@ -21,10 +35,20 @@ app = create_application()
 
 @app.on_event('startup')
 async def startup_event():
-    log.info('Starting up...')
+    """
+    Инициализирует БД перед стартом работы приложения
+
+    """
+    log.info('Старт приложения...')
+    log.info('Запуск БД.')
     initialize_database(app=app)
+    log.info('БД инициализирована...')
 
 
 @app.on_event('shutdown')
 async def shutdown_event():
-    log.info('Shutting down...')
+    """
+    Логирует остановку приложения
+
+    """
+    log.info('Остановка приложения...')

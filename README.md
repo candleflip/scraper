@@ -68,7 +68,7 @@
 1. Поднять сервисы:
 
 ```shell
-docker-compose up --detach --build
+make up
 ```
 
 Поднимется 2 контейнера и 1 сетевой объект:
@@ -83,13 +83,15 @@ docker-compose up --detach --build
 
 Документация OpenAPI доступна по пути [localhost:8005/docs](http://localhost:8005/docs).
 Однако, для полноценной работы необходимо накатить первую миграцию. В противном случае ручки, взаимодействующие с 
-БД, будут отдавать `500 ошибку`.
+БД, будут отдавать `500 ошибку`, так как база не инициализирована.
 
-2. Накатить первую миграцию на создание структуры БД:
+2. Проинициализировать БД:
 
 ```shell
-docker-compose exec web aerich upgrade 
+make db-init 
 ```
+
+---
 
 ---
 
@@ -98,7 +100,7 @@ docker-compose exec web aerich upgrade
 Можно провести локально, выполнив команду:
 
 ```shell
-locust -f project/tests/load/dev.py
+make load-test
 ```
 
 ---
@@ -106,5 +108,5 @@ locust -f project/tests/load/dev.py
 ### :wrench: Unit-тестирование
 
 ```shell
-docker-compose exec web python -m pytest -xlvvs --cov="." 
+make unit-test 
 ```

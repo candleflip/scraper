@@ -20,44 +20,38 @@
 
 ### :file_folder: Структура
 
-```
-├── Dockerfile
-├── Dockerfile.prod
-├── app/
-│   ├── __init__.py
-│   ├── api/
-│   │   ├── __init__.py
-│   │   ├── crud.py
-│   │   ├── health_check.py
-│   │   └── summaries.py
-│   ├── db.py
-│   ├── main.py
-│   ├── models/
-│   │   ├── __init__.py
-│   │   ├── pydantic.py
-│   │   └── tortoise.py
-│   ├── settings.py
-│   └── summarizer.py
-├── db/
-│   ├── Dockerfile
-│   └── create.sql
-├── entrypoint.sh
-├── htmlcov/
-├── migrations/
-│   └── models/
-├── pyproject.toml
-├── requirements.txt
-└── tests/
-    ├── __init__.py
-    ├── load/
+```shell
+*  # <-- корень проекта
+├── README.md
+├── docker-compose.yml
+└── project/
+    ├── Dockerfile
+    ├── Dockerfile.prod
+    ├── app/
     │   ├── __init__.py
-    │   └── dev.py
-    └── unit/
+    │   ├── api/
+    │   │   ├── __init__.py
+    │   │   ├── crud.py
+    │   │   ├── health_check.py
+    │   │   └── summaries.py
+    │   ├── db.py
+    │   ├── main.py
+    │   ├── models/
+    │   │   ├── __init__.py
+    │   │   ├── pydantic/
+    │   │   └── tortoise/
+    │   ├── settings.py
+    │   └── summarizer.py
+    ├── db/
+    │   ├── Dockerfile
+    │   └── create.sql
+    ├── entrypoint.sh
+    ├── pyproject.toml
+    ├── requirements.txt
+    └── tests/
         ├── __init__.py
-        ├── conftest.py
-        ├── test_health_check.py
-        ├── test_summaries.py
-        └── test_summaries_unit.py
+        ├── load/
+        └── unit/
 ```
 
 ---

@@ -1,5 +1,9 @@
 # Web scraper by URL
 
+### :dart: TODO
+- [ ] Дописать тесты в `test_summaries_unit.py` 
+
+
 ### :pill: Стек
 
 - Версия языка: [Python3.10.1](https://www.python.org/downloads/release/python-3100/)
@@ -12,7 +16,7 @@
 - Нагрузочное тестирование: [Locust](https://locust.io/)
 
 
-### :bookmark_tabs: Структура
+### :file_folder: Структура
 
 ```
 ├── Dockerfile
@@ -55,7 +59,7 @@
 ```
 
 
-### Запуск
+### :gear: Запуск
 
 Для консистентности работы рекомендуется запускать инструкции из корня проекта.
 
@@ -84,10 +88,16 @@ docker-compose up --detach --build
 docker-compose exec web aerich upgrade 
 ```
 
-### Нагрузочное тестирование
+### :chart_with_upwards_trend: Нагрузочное тестирование
 
 Можно провести локально, выполнив команду:
 
 ```shell
 locust -f project/tests/load/dev.py
+```
+
+### :wrench: Unit-тестирование
+
+```shell
+docker-compose exec web python -m pytest -xlvvs --cov="." 
 ```

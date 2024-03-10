@@ -1,3 +1,9 @@
+"""
+Модуль тестирования ручки /summaries
+
+Здесь собраны тесты с моком на фоновую задачу генерации пересказа, а также с моком на поход в БД.
+
+"""
 import json
 from datetime import datetime
 
@@ -7,6 +13,14 @@ from app.api import crud, summaries
 
 
 def test_create_summary(test_app, monkeypatch):
+    """
+    GIVEN: тестовое приложение с ручкой на создание пересказа и замоканными
+походом в БД и фоновой задачей на генерацию пересказа
+    WHEN: получает запрос на создание пересказа текста по URL с валидными параметрами
+    THEN: возвращает положительный ответ со статус-кодом 201
+
+    """
+
     async def mock_generate_summary(summary_id, url):
         return None
 
@@ -26,6 +40,12 @@ def test_create_summary(test_app, monkeypatch):
 
 
 def test_create_summary_invalid_json(test_app):
+    """
+    GIVEN: тестовое приложение с ручкой на создание пересказа
+    WHEN: получает запрос на создание с невалидным json (пустым либо содержащим невалидный URL)
+    THEN: возвращает ошибку 422 с описанием
+
+    """
     response = test_app.post('/summaries/', data=json.dumps({}))
     assert response.status_code == 422
     assert response.json() == {
@@ -44,6 +64,12 @@ def test_create_summary_invalid_json(test_app):
 
 
 def test_read_summary(test_app, monkeypatch):
+    """
+    GIVEN: тестовое приложение с ручкой на получение пересказа по ID и замоканным походом в БД
+    WHEN: получает запрос на получение существующего в БД и валидного пересказа по ID
+    THEN: возвращает ответ 200 с данными о пересказе
+
+    """
     test_data = {'id': 1, 'url': 'https://foo.bar', 'summary': 'summary', 'created_at': datetime.utcnow().isoformat()}
 
     async def mock_get(summary_id):
@@ -57,6 +83,13 @@ def test_read_summary(test_app, monkeypatch):
 
 
 def test_read_summary_incorrect_id(test_app, monkeypatch):
+    """
+    GIVEN: тестовое приложение с ручкой на получение пересказа по ID и замоканным походом в БД
+    WHEN: получает запрос на получение пересказа, не существующего в БД
+    THEN: возвращает ответ 404 с телом описания
+
+    """
+
     async def mock_get(summary_id):
         return None
 
@@ -122,6 +155,14 @@ def test_update_summary_invalid(test_app, id_, payload, status_code, detail):
 
 
 def test_update_summary_invalid_url(test_app, monkeypatch):
+    """
+    GIVEN: тестовое приложение с ручкой на изменение пересказа по ID и замоканными
+        походом в БД и фоновой задачей на генерацию пересказа
+    WHEN: получает запрос на изменение существующего в БД пересказа, но в запросе невалидный URL
+    THEN: возвращает ответ 422 с описанием, что URL невалиден
+
+    """
+
     async def mock_generate_summary(summary_id, url):
         return None
 

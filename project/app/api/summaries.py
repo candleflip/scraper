@@ -8,7 +8,7 @@ from fastapi import APIRouter, BackgroundTasks, HTTPException, Path
 from app.api import crud
 from app.models.pydantic.summary import SummaryPayloadSchema, SummaryResponseSchema, SummaryUpdatePayloadSchema
 from app.models.tortoise.summary_schema import SummarySchema
-from app.summarizer import generate_summary
+from app.utils.summarizer import generate_summary
 
 router = APIRouter()
 

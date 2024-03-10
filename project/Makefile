@@ -12,3 +12,6 @@ load-test:
 
 unit-test:
 	docker-compose exec web python -m pytest -xlvvs --cov="."
+
+down:
+	docker-compose down --volumes
